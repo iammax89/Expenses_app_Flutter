@@ -17,13 +17,12 @@ class ListOfTransactions extends StatelessWidget {
               child: Row(
             children: [
               Container(
-                width: 110,
                 margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                 decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey, width: 1)),
                 padding: EdgeInsets.all(10),
                 child: Text(
-                  '\$${transactions[index].amount}',
+                  '\$${transactions[index].amount.toStringAsFixed(2)}',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 20,
