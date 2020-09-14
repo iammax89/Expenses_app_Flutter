@@ -1,7 +1,7 @@
 import 'package:expenses_app/models/transaction.dart';
 import 'package:expenses_app/widgets/chart.dart';
 import 'package:expenses_app/widgets/list-of-transactions.dart';
-import 'package:expenses_app/widgets/new-transaction.dart';
+import 'package:expenses_app/widgets/add-new-transaction.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -10,10 +10,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Expenses App",
-      home: MyHomePage(),
-      theme: ThemeData(primarySwatch: Colors.pink, fontFamily: 'Montserrat'),
-    );
+        title: "Expenses App",
+        home: MyHomePage(),
+        theme: ThemeData(
+          primarySwatch: Colors.pink,
+          fontFamily: 'Montserrat',
+          textTheme: TextTheme(button: TextStyle(color: Colors.white)),
+        ));
   }
 }
 
@@ -32,12 +35,12 @@ class _MyHomePageState extends State<MyHomePage> {
         .toList();
   }
 
-  void _addNewTransaction(String title, double amount) {
+  void _addNewTransaction(String title, double amount, DateTime date) {
     final newTx = Transaction(
         id: DateTime.now().toString(),
         title: title,
         amount: amount,
-        date: DateTime.now());
+        date: date);
 
     setState(() {
       _userTransactions.add(newTx);
@@ -48,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
     showModalBottomSheet(
         context: context,
         builder: (_) {
-          return NewTransaction(_addNewTransaction);
+          return AddNewTransaction(_addNewTransaction);
         });
   }
 
