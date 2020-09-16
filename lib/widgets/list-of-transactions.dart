@@ -4,8 +4,10 @@ import 'package:intl/intl.dart';
 
 class ListOfTransactions extends StatelessWidget {
   final List<Transaction> transactions;
+  final Function removeTransaction;
 
-  ListOfTransactions({@required this.transactions});
+  ListOfTransactions(
+      {@required this.transactions, @required this.removeTransaction});
 
   @override
   Widget build(BuildContext context) {
@@ -47,6 +49,12 @@ class ListOfTransactions extends StatelessWidget {
                                 '\$${transactions[index].amount.toStringAsFixed(2)}')),
                       ),
                     ),
+                    trailing: IconButton(
+                        icon: Icon(Icons.delete),
+                        color: Theme.of(context).errorColor,
+                        onPressed: () {
+                          removeTransaction(transactions[index].id);
+                        }),
                   ),
                 );
               },

@@ -19,7 +19,7 @@ class _AddNewTransactionState extends State<AddNewTransaction> {
     final String enteredTitle = _titleController.text;
     final double enteredAmount = double.parse(_amountController.text);
 
-    if (enteredTitle.isEmpty && enteredAmount <= 0 && _pickedDateTime == null) {
+    if (enteredTitle.isEmpty || enteredAmount <= 0 || _pickedDateTime == null) {
       return;
     }
     widget.addNewTransaction(_titleController.text,
